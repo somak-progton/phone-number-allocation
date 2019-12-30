@@ -1,24 +1,11 @@
-# README
+# Phone Number Allocator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application displays the list of all allocated phone numbers and allocates a requested phone number by checking wheather or not it is present in the database; if present, it'll allocated a randomly generated phone number which is not present in the database; if no special number is requested then it'll allocated a randomly generated phone number which will not be present in the database .
 
-Things you may want to cover:
+API endpoints:
 
-* Ruby version
+* GET /phones (lists all allocated phone numbers)
 
-* System dependencies
+* POST /phones (allocates a randomly generated phone number which won't be present in the database)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* POST /phones/no (allocates the requested number "no"; if the number is already allocated then allocates a randomly generated phone number)
