@@ -10,9 +10,9 @@ class PhonesController < ApplicationController
   # POST /phones
   def create
     # POST /phones/no
-    if phone_params.present?
+    if phone_params.exists?
       # if the requested number is already allocated
-      if Phone.where(no: phone_params[:no]).present?
+      if Phone.where(no: phone_params[:no]).exists?
         allocate
       else
         @phone = Phone.new(phone_params)
@@ -37,14 +37,8 @@ class PhonesController < ApplicationController
 
   # this function checks wheather a randomly generated number has already been allocated or not and allocates the number
   def allocate
-    while 1
-      no = rand(10 ** 10).to_s
-      if Phone.where(no: no).present?
-        next
-      else
-        @phone = Phone.new(no: no)
-        break
-      end
-    end
+    no = rand(10 ** 10).to_s
+    allocate if Phone.where(no: no).exists?
+    @phone = Phone.new(no: no)
   end
 end
