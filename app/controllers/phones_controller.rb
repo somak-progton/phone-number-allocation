@@ -10,7 +10,7 @@ class PhonesController < ApplicationController
   # POST /phones
   def create
     # POST /phones/no
-    if phone_params.exists?
+    if phone_params.present?
       # if the requested number is already allocated
       if Phone.where(no: phone_params[:no]).exists?
         allocate
